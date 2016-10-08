@@ -50,13 +50,17 @@ exports.filterCategory = function(req, cb) {
     let categories = req.params.category.split('&');
     let answer = req.query;
     let filteredCategories = [];
-      cards.forEach(category => {
-        if(card.category === category) {
-          filteredCategories.push(card);
+    cards.forEach(card => {
+      categories.forEach(category => {
+      if(card.category.toLowerCase() === category.toLowerCase()) {
+        filteredCategories.push(card);
         }
       })
+    })    
+    cb(null, filteredCategories);
   })
 }
+
 
 
 

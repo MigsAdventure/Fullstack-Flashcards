@@ -6,6 +6,7 @@ import Layout from './components/Layout';
 import Home from './components/Home';
 import Deck from './components/Deck';
 import Test from './components/Test';
+import CardStore from './stores/CardStore';
 
 
 render(

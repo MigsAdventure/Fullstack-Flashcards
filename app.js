@@ -4,6 +4,7 @@ const PORT = 8000;
 const path = require('path');
 const morgan = require('morgan');
 const express = require('express');
+const Card = require('./models/Card');
 const bodyParser = require('body-parser');
 const webpack = require('webpack');
 const webpackConfig = require('./webpack.config');
@@ -32,11 +33,48 @@ app.use(webpackDevMiddleware(compiler, {
 
 app.use(webpackHotMiddleware(compiler));
 
-
 //ROUTES
 
 app.get('/', (req, res) => {
   res.sendFile(path.resolve('index.html'));
+})
+
+app.get('/cards', (req, res) => {
+  Card.getAll((err, cards) => {
+    if (err) return res.status(400).send(err);
+    res.send(cards);
+  })
+})
+
+app.get('/cards/category/:category?', (req,res) => {
+  Card.filterCategory(req, (err,flashcard) => {
+    if(err) return res.status(400).send(err);
+    res.send(flashcard);
+  })
+})
+
+app.post('/cards', (req, res) => {
+  Card.create(req.body, err => {
+    if(err) return res.status(400).send(err);
+    res.send(req.body)
+  })
+})
+
+app.delete('/cards/:id', (req, res) => {
+  let deleteCard = req.params.id;
+  Card.delete(deleteCard, err => {
+    if(err) return res.status(400).send(err);
+  })
+  res.send('deleted card');
+})
+
+app.put('/cards/:id', (req, res) => {
+  let cardid = req.params.id;
+  let updateCard = req.body;
+  Card.update(cardId, updateCard, err => {
+    if(err) return res.status(400).send(err);
+  })
+  res.send('updated cards');
 })
 
 
@@ -44,3 +82,7 @@ app.get('/', (req, res) => {
 app.listen(PORT, err => {
   console.log(err || `Express listening on port ${PORT}`);
 })
+
+
+
+
