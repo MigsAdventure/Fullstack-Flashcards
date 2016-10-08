@@ -12,6 +12,17 @@ export default class Layout extends Component {
     return(
       <div className="container">
         <h1 className="text-center">Flashcards</h1>
+         <ul className="nav nav-tabs">
+          <li role="presentation" className={classNames({ active: path === '/'})}>
+            <Link to='/'>Home</Link>
+          </li>
+          <li role='presentation' className={classNames({active: path === '/deck'})}>
+            <Link to='/deck'>Deck</Link>
+          </li>
+          <li role='presentation' className={classNames({active: path === '/test'})}>
+            <Link to='/test'>Test</Link>
+          </li>
+        </ul>
         {this.props.children}
       </div>
       )
