@@ -18,18 +18,27 @@ exports.getAll = function(cb) {
 
 exports.write = function(newData, cb) {
   let json = JSON.stringify(newData);
-  fs.wrtieFile(filename, json, cb);
+  fs.writeFile(filename, json, cb);
 }
 
 exports.create = function(newItem, cb) {
   exports.getAll((err, items) => {
     if(err) return cb(err);
-    newItem.id = uuid();
     items.push(newItem);
-
     exports.write(items, cb);
   })
-} 
+}
+
+exports.delete = function(deleteItem, cb){
+  exports.getAll((err, cards) => {
+    let newCards = cards.filter(card => {
+      if (card.id !== deleteItem) {
+        return card;
+      }
+    })
+    exports.write(newCards, cb)
+  })
+}
 
 exports.update = function(cardId, updateCard, cb) {
   exports.getAll((err, cards) => {

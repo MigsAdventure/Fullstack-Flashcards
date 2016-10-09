@@ -7,6 +7,7 @@ import Home from './components/Home';
 import Deck from './components/Deck';
 import Test from './components/Test';
 import CardStore from './stores/CardStore';
+import InputForm from './components/InputForm';
 
 
 render(

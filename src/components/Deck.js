@@ -29,6 +29,10 @@ export default class Deck extends Component {
     })
   }
 
+  deleteCard (id) {
+    CardActions.deleteCard(id);
+  }
+
   render() {
     let {deck} = this.state;
     console.log('Deck.js: ', deck)
@@ -39,13 +43,13 @@ export default class Deck extends Component {
           {
             deck.map(card => {
               return (
-                <div className='flashCard' key={uuid()} id={uuid()}>
+                <div className='flashCard' key={uuid()} id={card.id}>
                   <h3>{card.category}</h3>
                   <h4>{card.question}</h4>
                   <h5>{card.answer}</h5>
+                  <button className='btn btn-danger deleteBtn' onClick={this.deleteCard.bind(this, card.id)}>x</button>
                 </div>
                 )
-              
             })
           }
         </div>

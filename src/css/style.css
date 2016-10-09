@@ -11,6 +11,7 @@ body {
 }
 
 div.flashCard {
+    position: relative; 
     display: inline-block;
     margin: 1em;
     width: 22em;
@@ -18,7 +19,10 @@ div.flashCard {
     border: 1px solid black;
     margin-bottom: 10px;
     vertical-align: top;
+}
 
+input {
+  text-align: center;
 }
 
 h3 {
@@ -29,5 +33,23 @@ h3 {
 h4,h5 {
   line-height: 1.2em
 }
+
+input.newCardInput {
+  width: 35em;
+  margin: 1em auto;
+  height:2em;
+}
+
+
+button.deleteBtn {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    color: #fff;
+    border-radius: 100%;
+    background-color: #d9534f;
+    border-color: #d43f3a;
+}
+
 
 
