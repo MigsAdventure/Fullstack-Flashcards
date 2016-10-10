@@ -29,10 +29,11 @@ exports.create = function(newItem, cb) {
   })
 }
 
-exports.delete = function(deleteItem, cb){
+exports.delete = function(req, cb){
   exports.getAll((err, cards) => {
+    let deleteCard = req.params.id;
     let newCards = cards.filter(card => {
-      if (card.id !== deleteItem) {
+      if (card.id !== deleteCard) {
         return card;
       }
     })
@@ -40,8 +41,10 @@ exports.delete = function(deleteItem, cb){
   })
 }
 
-exports.update = function(cardId, updateCard, cb) {
+exports.update = function(req, cb) {
   exports.getAll((err, cards) => {
+    let cardId = req.params.id;
+    let updateCard = req.body;
     let updatedCards = cards.map(card => {
       if(card.id === cardId) {
         card = updateCard;
@@ -49,7 +52,7 @@ exports.update = function(cardId, updateCard, cb) {
       }
       return card;
     })
-    exports.write(updateCards, cb);
+    exports.write(updatedCards, cb);
   })
 }
 

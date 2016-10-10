@@ -13,7 +13,7 @@ const API = {
   },
 
   sendNewCard(newCard){
-    axios.post('http://localhost:8000/cards', newCard)
+    axios.post('http://localhost:8000/cards/', newCard)
     .then(response => {
       console.log('newCard: ', response);
     })
@@ -25,12 +25,20 @@ const API = {
   deleteCard(delCard) {
     axios.delete(`http://localhost:8000/cards/${delCard}`)
     .then(response => {
-      console.log('delete card: ', response);
+      API.fetchDeck();
     })
     .catch(err => {
       console.log('err: ', err);
     })
-  }
+  },
+
+  editCard(editedCard) {
+    axios.put(`http://localhost:8000/cards/${editedCard.id}`, editedCard)
+    .then(response => {
+      API.fetchDeck();
+      console.log('EditCard: ', response);
+    }) 
+  },
 
 }
 

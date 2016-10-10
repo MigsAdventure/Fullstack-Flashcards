@@ -1,11 +1,17 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router';
 import classNames from 'classnames';
+import CardActions from '../actions/CardActions';
 
 export default class Layout extends Component {
   constructor() {
     super();
   }
+
+  componentDidMount() {
+    CardActions.fetchDeck();
+  }
+
 
   render() {
     let path = this.props.location.pathname;

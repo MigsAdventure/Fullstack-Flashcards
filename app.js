@@ -21,6 +21,7 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended : true}));
 
+
 app.use(express.static('build'));
 
 
@@ -61,17 +62,15 @@ app.post('/cards', (req, res) => {
 })
 
 app.delete('/cards/:id', (req, res) => {
-  let deleteCard = req.params.id;
-  Card.delete(deleteCard, err => {
+  Card.delete(req, err => {
     if(err) return res.status(400).send(err);
   })
   res.send('deleted card');
 })
 
 app.put('/cards/:id', (req, res) => {
-  let cardid = req.params.id;
-  let updateCard = req.body;
-  Card.update(cardId, updateCard, err => {
+  
+  Card.update(req, err => {
     if(err) return res.status(400).send(err);
   })
   res.send('updated cards');

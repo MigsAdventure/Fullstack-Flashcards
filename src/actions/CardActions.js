@@ -13,6 +13,10 @@ const CardActions = {
     API.deleteCard(delCard);
   },
 
+  editCard(editedCard)  {
+    API.editCard(editedCard);
+  },
+  
 }
 
 export default CardActions;

@@ -1,7 +1,9 @@
 import {EventEmitter} from 'events';
 import AppDispatcher from '../AppDispatcher';
+import _ from 'lodash';
 
-let _deck = '' || [];
+let _deck = [];
+let _randDeck = _deck;
 
 class CardStore extends EventEmitter {
   constructor() {
@@ -11,7 +13,6 @@ class CardStore extends EventEmitter {
       let {type, payload} = action;
       switch(type) {
         case 'RECEIVE_DECK' : {
-              console.log('deck Store:', payload.deck.data)
               _deck = payload.deck.data;
               this.emit('CHANGE');
               break;
@@ -20,16 +21,21 @@ class CardStore extends EventEmitter {
     })
   } //end of constructor
 
-  startListening(cb) {
+ startListening(cb) {
     this.on('CHANGE', cb);
   }
 
   stopListening(cb) {
-    this.removeListener('CHANGE', cb)
+    this.removeListener('CHANGE', cb);
   }
 
   getAll() {
     return _deck;
+  }
+
+  getRandomCard() {
+      _randDeck = _.shuffle(_deck);
+    return _randDeck.pop();
   }
 }
 

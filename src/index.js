@@ -8,6 +8,7 @@ import Deck from './components/Deck';
 import Test from './components/Test';
 import CardStore from './stores/CardStore';
 import InputForm from './components/InputForm';
+import EditModal from './components/EditModal';
 
 
 render(
