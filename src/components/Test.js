@@ -29,7 +29,8 @@ export default class Test extends Component {
   }
 
   getRandCard() {
-   this._onChange();
+    let {card} = this.state;
+    
   }
 
   checkAnswer() {
@@ -52,14 +53,14 @@ export default class Test extends Component {
     return (
       <div>
         <h1>Test</h1>
-        <h3>Click below when ready</h3>
         <div className='randomCard'>
-          <h2>{card.question}</h2>
-          <h3>{answer}</h3>
+          <h2>{card.category}</h2>
+          <h3>{card.question}</h3>
+          <h4>{answer}</h4>
           <input ref='answerInput'/>
           <button className='btn btn-primary' onClick={this.checkAnswer.bind(this)}>submit</button>
         </div>
-        <button className='btn btn-success' onClick={this.getRandCard.bind(this)}>Random Card</button>
+        <button className='btn btn-success' onClick={this.getRandCard.bind(this)}>Next</button>
       </div>
       ) 
   }

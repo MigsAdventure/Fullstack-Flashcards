@@ -7,6 +7,14 @@ const ServerActions = {
       payload: {deck},
     })
   },
+
+  deleteCard(card) {
+    AppDispatcher.dispatch({
+      type: 'DELETE_CARD',
+      payload: {card}
+    })
+  },
+
 }
 
 export default ServerActions;

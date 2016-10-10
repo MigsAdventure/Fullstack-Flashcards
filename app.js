@@ -62,10 +62,11 @@ app.post('/cards', (req, res) => {
 })
 
 app.delete('/cards/:id', (req, res) => {
-  Card.delete(req, err => {
+  Card.delete(req, (err,cards)   => {
     if(err) return res.status(400).send(err);
+     res.send(cards);
   })
-  res.send('deleted card');
+ 
 })
 
 app.put('/cards/:id', (req, res) => {

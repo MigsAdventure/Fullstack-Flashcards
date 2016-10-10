@@ -38,6 +38,7 @@ exports.delete = function(req, cb){
       }
     })
     exports.write(newCards, cb)
+    cb(null, newCards)
   })
 }
 

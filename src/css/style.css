@@ -34,10 +34,10 @@ h4,h5 {
   line-height: 1.2em
 }
 
-input.newCardInput {
-  width: 35em;
+.form-control{
+  width: 60%;
   margin: 1em auto;
-  height:2em;
+  height:3em;
 }
 
 
@@ -50,6 +50,17 @@ button.deleteBtn {
     background-color: #d9534f;
     border-color: #d43f3a;
 }
+
+.modal-body input {
+  width: 90%;
+  height:3em;
+  margin: 1em;
+}
+
+.modal-footer {
+  text-align: center;
+}
+
 
 
 

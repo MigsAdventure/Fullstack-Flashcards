@@ -12,11 +12,17 @@ class CardStore extends EventEmitter {
     AppDispatcher.register(action => {
       let {type, payload} = action;
       switch(type) {
-        case 'RECEIVE_DECK' : {
+        case 'RECEIVE_DECK' : 
               _deck = payload.deck.data;
               this.emit('CHANGE');
               break;
-        }
+        
+        case 'DELETE_CARD' : 
+            _deck = payload.card.data;
+            this.emit('CHANGE');
+            break;
+
+
       } //end of switch
     })
   } //end of constructor

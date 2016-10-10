@@ -25,7 +25,8 @@ const API = {
   deleteCard(delCard) {
     axios.delete(`http://localhost:8000/cards/${delCard}`)
     .then(response => {
-      API.fetchDeck();
+      console.log('del res:' ,response);
+      ServerActions.deleteCard(response);
     })
     .catch(err => {
       console.log('err: ', err);
